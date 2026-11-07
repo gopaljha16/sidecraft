@@ -10,9 +10,19 @@ repository's implementation scope.
 
 ## Current state
 
-Phase 1 includes the responsive studio landing page, original carousel cover
-compositions, shared navigation, footer, typography, and visual design system.
-Full portfolio viewers and the contact integration are planned in later phases.
+The studio includes a responsive landing page, a filterable gallery of six
+self-initiated concepts, seven-slide viewers, individual project stories, and a
+dedicated carousel-design service page. Pricing, delivery responsibilities, and
+FAQs share the same source data. Email delivery is planned for a later phase;
+enquiries are currently labelled as opening soon.
+
+## Styling
+
+Tailwind CSS 4 is integrated through PostCSS. Theme colors and font utilities
+reference the studio's shared brand tokens. Pages and interactive components use
+responsive utilities; original carousel compositions use component-layer CSS
+for their art direction. Source detection is limited to application/components
+so local notes and QA files do not generate utility classes.
 
 ## Local development
 
@@ -36,7 +46,8 @@ npm run format:check
 
 Prettier handles TypeScript, React, CSS, JSON, and Markdown. The configuration
 uses two-space indentation, double quotes, semicolons, and a 100-character print
-width. EditorConfig provides matching editor defaults. Local notes, generated
+width. The Tailwind Prettier plugin sorts utility classes automatically.
+EditorConfig provides matching editor defaults. Local notes, generated
 output, and dependency lockfiles are excluded from formatting.
 
 Fonts are bundled locally through `next/font/local`; the production site does

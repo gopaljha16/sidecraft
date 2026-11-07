@@ -1,11 +1,11 @@
+import Link from "next/link";
 import { Arrow } from "@/components/icons";
-import { CarouselArtwork, type ArtworkVariant } from "@/components/carousel-artwork";
-
-const previews: { variant: ArtworkVariant; name: string; category: string }[] = [
-  { variant: "saas", name: "SaaS Growth Playbook", category: "SaaS & Technology" },
-  { variant: "founder", name: "Founder Lessons", category: "Founder Branding" },
-  { variant: "education", name: "The Future of AI", category: "Education" },
-];
+import { CarouselArtwork } from "@/components/carousel-artwork";
+import { PortfolioGrid } from "@/components/portfolio-grid";
+import { MonthlyPackage } from "@/components/monthly-package";
+import { DeliveryProcess } from "@/components/delivery-process";
+import { Faq } from "@/components/faq";
+import { projects } from "@/lib/projects";
 
 export default function Home() {
   return (
@@ -67,7 +67,7 @@ export default function Home() {
       <section className="section container" id="work" aria-labelledby="work-heading">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">01 / SELECTED DIRECTIONS</p>
+            <p className="eyebrow">01 / SELECTED WORK</p>
             <h2 id="work-heading">
               Design that
               <br />
@@ -80,21 +80,13 @@ export default function Home() {
             One shared belief: every slide should earn the next swipe.
           </p>
         </div>
-        <div className="work-grid">
-          {previews.map((project) => (
-            <article className={`work-preview preview-${project.variant}`} key={project.variant}>
-              <div className="work-art">
-                <CarouselArtwork variant={project.variant} />
-              </div>
-              <div className="work-meta">
-                <span>{project.category}</span>
-                <span className="concept-tag">CONCEPT</span>
-              </div>
-              <h3>{project.name}</h3>
-              <p className="concept-note">Self-initiated concept project · Cover preview</p>
-            </article>
-          ))}
-        </div>
+        <PortfolioGrid
+          featured
+          projects={projects.map(({ slides, ...project }) => ({ ...project, cover: slides[0] }))}
+        />
+        <Link className="text-link mt-10" href="/work">
+          Explore & filter all work <Arrow diagonal />
+        </Link>
       </section>
 
       <section className="approach-section" id="approach" aria-labelledby="approach-heading">
@@ -181,9 +173,9 @@ export default function Home() {
               From the first hook to the final slide. Original LinkedIn and Instagram carousels that
               make complex ideas feel clear.
             </p>
-            <a className="text-link" href="#pricing">
-              Explore the monthly package <Arrow />
-            </a>
+            <Link className="text-link" href="/services/carousel-design">
+              Explore carousel design <Arrow />
+            </Link>
           </div>
           <div className="service-list">
             {[
@@ -215,43 +207,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container pricing-section" id="pricing" aria-labelledby="pricing-heading">
-        <div className="pricing-intro">
-          <p className="eyebrow">CONSISTENCY, WITHOUT THE CREATIVE CHAOS.</p>
-          <h2 id="pricing-heading">
-            A month of ideas.
-            <br />
-            Made tangible.
-          </h2>
-          <p>
-            One focused package. Room for your expertise.
-            <br />A recognisable presence, month after month.
-          </p>
-        </div>
-        <div className="pricing-details">
-          <span className="eyebrow">MONTHLY CAROUSEL CONTENT</span>
-          <p className="price">
-            <span>from</span> ₹10,000<span>/ month</span>
-          </p>
-          <ul>
-            {[
-              "8 carousels per month · 6–8 slides each",
-              "Research, content structure & hooks",
-              "Slide copywriting & premium visual design",
-              "Captions & two revision rounds per carousel",
-            ].map((item) => (
-              <li key={item}>
-                <span aria-hidden="true">↗</span>
-                {item}
-              </li>
-            ))}
-          </ul>
-          <a className="button" href="#contact">
-            Request a monthly plan <Arrow diagonal />
-          </a>
-          <p className="pricing-note">Additional services are quoted separately.</p>
-        </div>
-      </section>
+      <MonthlyPackage />
+      <DeliveryProcess />
 
       <section
         className="section container about-section"
@@ -279,6 +236,7 @@ export default function Home() {
         </span>
       </section>
 
+      <Faq />
       <section className="contact-section" id="contact" aria-labelledby="contact-heading">
         <div className="container">
           <p className="eyebrow">YOUR NEXT GOOD IDEA STARTS HERE.</p>

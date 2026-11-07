@@ -16,8 +16,8 @@ export function Footer() {
           <br />a better frame.
         </p>
         <nav aria-label="Footer navigation">
-          <Link href="/#work">Work</Link>
-          <Link href="/#services">Services</Link>
+          <Link href="/work">Work</Link>
+          <Link href="/services/carousel-design">Services</Link>
           <Link href="/#contact">Contact</Link>
         </nav>
       </div>

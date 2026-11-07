@@ -5,8 +5,8 @@ import { useRef } from "react";
 import { Arrow, BrandMark } from "./icons";
 
 const links = [
-  ["Work", "/#work"],
-  ["Services", "/#services"],
+  ["Work", "/work"],
+  ["Services", "/services/carousel-design"],
   ["Approach", "/#approach"],
   ["About", "/#about"],
 ] as const;
