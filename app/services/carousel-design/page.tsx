@@ -61,16 +61,16 @@ export default function CarouselDesignPage() {
         </div>
       </section>
       <section className="container py-20 md:py-28">
-        <div className="section-heading">
+        <div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <div>
-            <p className="eyebrow">THE WORK, UP CLOSE</p>
+            <p className="eyebrow mb-5">THE WORK, UP CLOSE</p>
             <h2>
               See the story
               <br />
               across every slide.
             </h2>
           </div>
-          <p>
+          <p className="max-w-xs text-sm leading-relaxed text-muted">
             Original self-initiated concepts.
             <br />
             Explore the brief, design decisions, and all seven slides.

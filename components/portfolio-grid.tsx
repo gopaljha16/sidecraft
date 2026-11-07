@@ -71,10 +71,11 @@ export function PortfolioGrid({
         {category !== "All" ? ` in ${category}` : " to explore"}
       </p>
       <div
+        key={`${category}:${query.trim()}`}
         className={
           featured
-            ? "grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 xl:grid-cols-12"
-            : "grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 xl:grid-cols-3"
+            ? "portfolio-results grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 xl:grid-cols-12"
+            : "portfolio-results grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 xl:grid-cols-3"
         }
       >
         {matches.map((project, index) => (

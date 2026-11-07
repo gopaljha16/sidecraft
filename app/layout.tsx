@@ -28,7 +28,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body>
-        <a className="skip-link" href="#main-content">
+        <a
+          className="fixed -top-24 left-4 z-50 bg-ink p-4 text-white focus:top-3"
+          href="#main-content"
+        >
           Skip to content
         </a>
         <Navbar />

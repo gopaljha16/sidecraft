@@ -5,25 +5,49 @@ import { PortfolioGrid } from "@/components/portfolio-grid";
 import { MonthlyPackage } from "@/components/monthly-package";
 import { DeliveryProcess } from "@/components/delivery-process";
 import { Faq } from "@/components/faq";
+import { Approach } from "@/components/approach";
+import { ProjectSlide } from "@/components/project-slide";
+import { MotionEnhancements } from "@/components/motion-enhancements";
 import { projects } from "@/lib/projects";
 
 export default function Home() {
   return (
     <main id="main-content">
-      <section className="hero container" aria-labelledby="hero-heading">
-        <div className="hero-copy">
-          <p className="eyebrow">
-            <span className="status-dot" /> INDEPENDENT CAROUSEL DESIGN STUDIO
+      <MotionEnhancements />
+      <section
+        className="hero container grid items-center gap-5 pt-11 pb-14 md:min-h-[680px] md:grid-cols-2 md:gap-4 md:py-16 xl:min-h-[760px] xl:gap-8"
+        aria-labelledby="hero-heading"
+      >
+        <div className="relative z-2">
+          <p data-reveal className="eyebrow max-md:text-[8px]">
+            <span className="mr-2 inline-block size-[7px] rounded-full bg-brand" />
+            INDEPENDENT CAROUSEL DESIGN STUDIO
           </p>
-          <h1 id="hero-heading">
-            Make your ideas <span className="hero-emphasis">impossible</span> to scroll past
-            <span className="blue-period">.</span>
+          <h1
+            data-reveal
+            data-reveal-delay="70"
+            id="hero-heading"
+            className="my-6 max-w-[660px] text-[clamp(2.75rem,8.8vw,4.7rem)] leading-[1.035] tracking-[-.065em] md:text-[clamp(3rem,5.8vw,4rem)] xl:text-[clamp(3.4rem,5.15vw,5.2rem)]"
+          >
+            Make your ideas{" "}
+            <span className="relative inline-block text-brand after:absolute after:inset-x-0 after:-bottom-0.5 after:h-[3px] after:-rotate-2 after:bg-lime">
+              impossible
+            </span>{" "}
+            to scroll past<span className="text-brand">.</span>
           </h1>
-          <p className="hero-description">
+          <p
+            data-reveal
+            data-reveal-delay="140"
+            className="max-w-[440px] text-sm leading-[1.85] text-muted md:text-base"
+          >
             We turn ideas, expertise and products into premium social media content that captures
             attention, communicates value and makes your brand memorable.
           </p>
-          <div className="hero-actions">
+          <div
+            data-reveal
+            data-reveal-delay="210"
+            className="mt-7 flex flex-wrap items-center gap-5 xl:gap-6"
+          >
             <a className="button" href="#work">
               Explore our work <Arrow diagonal />
             </a>
@@ -31,50 +55,78 @@ export default function Home() {
               Start a project <Arrow />
             </a>
           </div>
-          <p className="hero-price">
+          <p
+            data-reveal
+            data-reveal-delay="280"
+            className="mt-7 text-xs leading-relaxed text-muted"
+          >
             A consistent voice. A distinctive look.
             <br />
-            <strong>Monthly content packages from ₹10,000.</strong>
+            <strong className="font-medium text-ink">Monthly content packages from ₹10,000.</strong>
           </p>
         </div>
-        <div className="hero-visual" aria-label="Three original carousel cover concepts">
-          <span className="visual-label">A FEW IDEAS, BEAUTIFULLY FRAMED.</span>
-          <div className="hero-card hero-card-back">
-            <CarouselArtwork variant="education" />
-          </div>
-          <div className="hero-card hero-card-middle">
-            <CarouselArtwork variant="founder" />
-          </div>
-          <div className="hero-card hero-card-front">
-            <CarouselArtwork variant="saas" />
-          </div>
-          <span className="visual-caption">
-            <span aria-hidden="true">↳</span> Small format. Big presence.
+        <div
+          className="relative mx-auto mt-10 aspect-[1/1.15] w-[90%] max-w-[480px] min-w-0 md:mt-0 md:aspect-auto md:h-[490px] md:w-full md:max-w-none xl:h-[570px]"
+          aria-label="Three original carousel cover concepts"
+        >
+          <span className="absolute -top-[3%] left-0 text-[7px] tracking-[.15em] md:top-0 md:left-[5%]">
+            A FEW IDEAS, BEAUTIFULLY FRAMED.
           </span>
-          <span className="concept-caption">SELF-INITIATED CONCEPT PROJECTS</span>
+          <div className="hero-card absolute top-[6%] -right-[3%] z-1 w-[64%] rotate-[11deg] md:top-[35px] md:-right-[2%] md:w-[70%] xl:top-[25px] xl:w-[64%]">
+            <div data-reveal data-reveal-delay="120">
+              <div className="hero-float rounded-xl border-[5px] border-canvas shadow-[0_15px_30px_rgb(21_22_25/.09)]">
+                <CarouselArtwork variant="education" />
+              </div>
+            </div>
+          </div>
+          <div className="hero-card absolute top-[17%] -left-[2%] z-2 w-[64%] -rotate-12 md:top-[90px] md:w-[70%] xl:top-[85px] xl:left-0 xl:w-[64%]">
+            <div data-reveal data-reveal-delay="220">
+              <div className="hero-float rounded-xl border-[5px] border-canvas shadow-[0_15px_30px_rgb(21_22_25/.09)]">
+                <CarouselArtwork variant="founder" />
+              </div>
+            </div>
+          </div>
+          <div className="hero-card absolute top-[25%] right-[8%] z-3 w-[64%] rotate-3 md:top-[140px] md:right-[4%] md:w-[70%] xl:top-[118px] xl:right-[9%] xl:w-[64%]">
+            <div data-reveal data-reveal-delay="320">
+              <div className="hero-float rounded-xl border-[5px] border-canvas shadow-[0_15px_30px_rgb(21_22_25/.09)]">
+                <CarouselArtwork variant="saas" />
+              </div>
+            </div>
+          </div>
+          <span className="absolute bottom-0 left-[2%] -rotate-5 font-heading text-xs md:bottom-1 md:text-sm">
+            <span className="mr-2 text-3xl" aria-hidden="true">
+              ↳
+            </span>
+            Small format. Big presence.
+          </span>
+          <span className="absolute right-0 -bottom-6 text-[6px] tracking-widest text-muted md:text-[7px]">
+            SELF-INITIATED CONCEPT PROJECTS
+          </span>
         </div>
       </section>
-
-      <div className="value-strip">
-        <div className="container">
-          <span>LESS NOISE. MORE MEANING.</span>
-          <p>
-            Research<span>✳</span>Story<span>✳</span>Design<span>✳</span>Delivered consistently.
+      <div className="border-y border-line">
+        <div className="container flex flex-col justify-between gap-3 py-6 lg:flex-row lg:items-center">
+          <span className="text-[9px] tracking-widest text-muted">LESS NOISE. MORE MEANING.</span>
+          <p className="flex flex-wrap items-center gap-2.5 font-heading text-xs tracking-tight md:gap-5 md:text-lg">
+            Research<span className="text-brand">✳</span>Story<span className="text-brand">✳</span>
+            Design<span className="text-brand">✳</span>Delivered consistently.
           </p>
         </div>
       </div>
-
-      <section className="section container" id="work" aria-labelledby="work-heading">
-        <div className="section-heading">
+      <section className="container py-20 md:py-28" id="work" aria-labelledby="work-heading">
+        <div
+          data-reveal
+          className="mb-10 flex flex-col justify-between gap-6 md:mb-12 lg:flex-row lg:items-end"
+        >
           <div>
-            <p className="eyebrow">01 / SELECTED WORK</p>
+            <p className="eyebrow mb-5">01 / SELECTED WORK</p>
             <h2 id="work-heading">
               Design that
               <br />
-              <span className="muted-heading">communicates.</span>
+              <span className="text-[#85867f]">communicates.</span>
             </h2>
           </div>
-          <p>
+          <p className="max-w-xs text-sm leading-relaxed text-muted">
             Different stories. Distinct visual worlds.
             <br />
             One shared belief: every slide should earn the next swipe.
@@ -88,96 +140,52 @@ export default function Home() {
           Explore & filter all work <Arrow diagonal />
         </Link>
       </section>
-
-      <section className="approach-section" id="approach" aria-labelledby="approach-heading">
-        <div className="container">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">02 / THE APPROACH</p>
-              <h2 id="approach-heading">
-                A little structure.
-                <br />A lot of <span>possibility.</span>
-              </h2>
-            </div>
-            <p>
-              Good design starts before the first pixel.
-              <br />
-              We find the story, then give it a form worth remembering.
-            </p>
-          </div>
-          <ol className="process-grid">
-            {[
-              [
-                "Discover",
-                "Find the idea worth sharing.",
-                "Your expertise, your audience, and the reason they should care.",
-              ],
-              [
-                "Structure",
-                "Give the story a spine.",
-                "A strong hook, a thoughtful sequence, and one clear takeaway.",
-              ],
-              [
-                "Design",
-                "Make every slide count.",
-                "Purposeful typography, visual rhythm, and a language that feels like you.",
-              ],
-              [
-                "Deliver",
-                "Ready for the next swipe.",
-                "Refine together and deliver a consistent, considered carousel.",
-              ],
-            ].map(([title, subtitle, description], index) => (
-              <li key={title}>
-                <span className="step-number">
-                  0{index + 1} <Arrow />
-                </span>
-                <h3>{title}</h3>
-                <strong>{subtitle}</strong>
-                <p>{description}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
+      <Approach
+        design={<CarouselArtwork variant="saas" />}
+        deliverySlides={projects[0].slides.slice(0, 3).map((slide, index) => (
+          <ProjectSlide key={index} theme="saas" slide={slide} index={index} />
+        ))}
+      />
       <section
-        className="section container services-section"
+        className="container py-20 md:py-28"
         id="services"
         aria-labelledby="services-heading"
       >
-        <div className="section-heading">
+        <div
+          data-reveal
+          className="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end"
+        >
           <div>
-            <p className="eyebrow">03 / WHAT WE MAKE</p>
+            <p className="eyebrow mb-5">03 / WHAT WE MAKE</p>
             <h2 id="services-heading">
               Your expertise.
               <br />
               Our creative toolkit.
             </h2>
           </div>
-          <p>
+          <p className="max-w-xs text-sm leading-relaxed text-muted">
             A focused content system for founders,
             <br />
             brands, and people with something to say.
           </p>
         </div>
-        <div className="services-layout">
-          <div className="service-feature">
+        <div className="grid gap-8 md:grid-cols-2 lg:gap-16">
+          <div className="flex flex-col items-start rounded-2xl bg-[#eeeee7] p-8 lg:p-10">
             <span className="eyebrow">THE SIGNATURE SERVICE</span>
-            <h3>
+            <h3 className="relative my-8 w-full text-[clamp(3rem,5vw,4.7rem)] leading-none tracking-[-.06em]">
               Carousel
               <br />
-              design<span>↗</span>
+              design<span className="absolute top-0 right-0 text-brand">↗</span>
             </h3>
-            <p>
+            <p className="mb-7 max-w-sm text-sm leading-relaxed text-muted">
               From the first hook to the final slide. Original LinkedIn and Instagram carousels that
               make complex ideas feel clear.
             </p>
-            <Link className="text-link" href="/services/carousel-design">
+            <Link className="text-link mt-auto" href="/services/carousel-design">
               Explore carousel design <Arrow />
             </Link>
           </div>
-          <div className="service-list">
+          <div className="flex flex-col justify-center">
             {[
               [
                 "01",
@@ -195,65 +203,78 @@ export default function Home() {
                 "Thoughtful motion content to bring your ideas into a new format.",
               ],
             ].map(([number, title, description]) => (
-              <div key={number}>
-                <span>{number}</span>
+              <div key={number} className="flex gap-6 border-b border-line py-7 first:border-t">
+                <span className="pt-1.5 text-xs text-brand">{number}</span>
                 <div>
-                  <h3>{title}</h3>
-                  <p>{description}</p>
+                  <h3 className="text-2xl tracking-tight">{title}</h3>
+                  <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">{description}</p>
+                  <Link href="/#contact" className="text-link mt-4">
+                    Discuss {title.toLowerCase()} <Arrow diagonal />
+                  </Link>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
-
       <MonthlyPackage />
       <DeliveryProcess />
-
       <section
-        className="section container about-section"
+        className="container grid items-start gap-8 py-20 md:grid-cols-[.7fr_1.4fr] md:py-28 xl:grid-cols-[.65fr_1.4fr_.5fr]"
         id="about"
         aria-labelledby="about-heading"
       >
-        <p className="eyebrow">04 / INDEPENDENT BY DESIGN</p>
-        <div>
+        <p className="eyebrow md:pt-3">04 / INDEPENDENT BY DESIGN</p>
+        <div data-reveal>
           <h2 id="about-heading">
             Small studio.
             <br />
-            <span className="muted-heading">Considered work.</span>
+            <span className="text-[#85867f]">Considered work.</span>
           </h2>
-          <p>
+          <p className="mt-7 max-w-md text-sm leading-relaxed text-muted">
             Slidecraft is an independent creative studio focused on one thing: giving good ideas the
             clarity and visual presence they deserve.
           </p>
-          <p>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
             We believe useful content can be beautiful, and beautiful content should have something
             to say. Every project starts with that balance.
           </p>
         </div>
-        <span className="about-symbol" aria-hidden="true">
+        <span
+          className="hidden text-right text-[150px] leading-none text-brand xl:block"
+          aria-hidden="true"
+        >
           ✳
         </span>
       </section>
-
       <Faq />
-      <section className="contact-section" id="contact" aria-labelledby="contact-heading">
+      <section className="bg-lime py-16 md:py-20" id="contact" aria-labelledby="contact-heading">
         <div className="container">
           <p className="eyebrow">YOUR NEXT GOOD IDEA STARTS HERE.</p>
-          <h2 id="contact-heading">
+          <h2
+            data-reveal
+            id="contact-heading"
+            className="relative mt-8 text-[clamp(2.8rem,8vw,4.5rem)] tracking-[-.065em] md:text-[clamp(3.2rem,6.8vw,6.4rem)]"
+          >
             Let’s make your
             <br />
-            next scroll <em>stop.</em>
-            <span aria-hidden="true">↗</span>
+            next scroll <em className="font-[Georgia] font-normal">stop.</em>
+            <span
+              className="absolute top-0 right-0 hidden min-[400px]:inline md:text-[1.3em]"
+              aria-hidden="true"
+            >
+              ↗
+            </span>
           </h2>
-          <div className="contact-bottom">
-            <p>
+          <div className="mt-10 flex flex-col justify-between gap-7 md:flex-row md:items-end">
+            <p className="text-sm leading-relaxed">
               Bring your expertise.
               <br />
               We’ll bring structure, words, and design.
             </p>
-            <span className="contact-status">
-              <span className="status-dot" /> Project enquiries opening soon
+            <span className="border-b border-[#829f55] pb-2 text-xs">
+              <span className="mr-2 inline-block size-1.5 rounded-full bg-ink" />
+              Project enquiries opening soon
             </span>
           </div>
         </div>

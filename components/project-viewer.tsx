@@ -10,7 +10,13 @@ export function ProjectViewer({ title, slides }: { title: string; slides: ReactN
   function goTo(index: number) {
     const next = Math.max(0, Math.min(index, slides.length - 1));
     const element = track.current;
-    if (element) element.scrollTo({ left: element.clientWidth * next, behavior: "instant" });
+    if (element)
+      element.scrollTo({
+        left: element.clientWidth * next,
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "instant"
+          : "smooth",
+      });
   }
   const controlClass =
     "inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-full border border-line bg-canvas disabled:cursor-default disabled:opacity-35 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand";

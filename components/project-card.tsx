@@ -19,7 +19,9 @@ export function ProjectCard({ project }: { project: ProjectPreview }) {
         </div>
         <div className="mt-5 flex flex-wrap items-center justify-between gap-2 text-xs text-muted">
           <span>{project.category}</span>
-          <span className="concept-tag">CONCEPT · 7 SLIDES</span>
+          <span className="rounded border border-line px-1.5 py-1 text-[8px] tracking-wider">
+            CONCEPT · 7 SLIDES
+          </span>
         </div>
         <div className="mt-3 flex items-center justify-between gap-4">
           <h3 className="text-2xl tracking-tight">{project.title}</h3>

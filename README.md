@@ -18,11 +18,23 @@ enquiries are currently labelled as opening soon.
 
 ## Styling
 
-Tailwind CSS 4 is integrated through PostCSS. Theme colors and font utilities
-reference the studio's shared brand tokens. Pages and interactive components use
-responsive utilities; original carousel compositions use component-layer CSS
-for their art direction. Source detection is limited to application/components
-so local notes and QA files do not generate utility classes.
+Tailwind CSS 4.3.5 is integrated through PostCSS. Homepage sections, navigation,
+footer, pricing, gallery, and project layouts use responsive JSX utilities.
+
+- `app/globals.css`: Tailwind imports, theme tokens, base styles, and shared
+  primitives using `@apply`.
+- `app/artwork.css`: original scalable carousel artwork.
+- `app/motion.css`: short transitions, preview motion, and reduced-motion rules.
+
+Source detection is limited to application/components so local notes and QA
+files do not generate utility classes. VS Code uses Tailwind CSS language mode,
+an explicit stylesheet entry, and custom directive definitions. Install the
+recommended Tailwind CSS IntelliSense extension for editor support.
+
+The homepage Approach section has four directly selectable stages with a sticky
+desktop preview. Scroll can follow the narrative on desktop; mobile uses the
+same buttons without sticky positioning. Motion respects reduced-motion
+preferences, and the first preview and all process copy render without JavaScript.
 
 ## Local development
 

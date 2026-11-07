@@ -15,7 +15,7 @@ export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
 export function BrandMark() {
   return (
     <svg
-      className="brand-mark"
+      className="w-[29px] shrink-0 text-brand max-[360px]:w-6"
       width="35"
       height="35"
       viewBox="0 0 35 35"
