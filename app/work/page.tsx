@@ -1,6 +1,5 @@
 import { pageMetadata } from "@/lib/seo";
-import { projects } from "@/lib/projects";
-import { PortfolioGrid } from "@/components/portfolio-grid";
+import { Portfolio } from "@/components/portfolio";
 import { ProjectCta } from "@/components/project-cta";
 
 export const metadata = pageMetadata(
@@ -23,9 +22,8 @@ export default function WorkPage() {
           Six self-initiated concept projects. Forty-two original slides. A closer look at how we
           turn a topic into a clear, considered carousel.
         </p>
-        <PortfolioGrid
-          projects={projects.map(({ slides, ...project }) => ({ ...project, cover: slides[0] }))}
-        />
+        <h2 className="sr-only">Concept projects</h2>
+        <Portfolio />
       </section>
       <ProjectCta />
     </main>

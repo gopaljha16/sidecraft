@@ -3,19 +3,16 @@ import type { Project } from "@/lib/projects";
 import { ProjectSlide } from "./project-slide";
 import { Arrow } from "./icons";
 
-export type ProjectPreview = Pick<Project, "slug" | "title" | "category" | "theme" | "brief"> & {
-  cover: Project["slides"][0];
-};
-
-export function ProjectCard({ project }: { project: ProjectPreview }) {
+export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="min-w-0">
       <Link
         className="project-card-link group block rounded-2xl focus-visible:outline-3 focus-visible:outline-offset-8 focus-visible:outline-brand"
         href={`/work/${project.slug}`}
+        prefetch={false}
       >
         <div className={`project-thumbnail theme-${project.theme}`}>
-          <ProjectSlide theme={project.theme} slide={project.cover} index={0} />
+          <ProjectSlide theme={project.theme} slide={project.slides[0]} index={0} />
         </div>
         <div className="mt-5 flex flex-wrap items-center justify-between gap-2 text-xs text-muted">
           <span>{project.category}</span>

@@ -9,6 +9,7 @@
   --color-canvas: var(--canvas);
   --color-ink: var(--ink);
   --color-brand: var(--blue);
+  --color-brand-strong: #4052db;
   --color-lime: var(--lime);
   --color-muted: var(--muted);
   --color-line: var(--line);

@@ -57,7 +57,9 @@ export default async function ProjectPage({ params }: Props) {
           <h1 className="max-w-4xl font-heading text-5xl leading-[1.04] tracking-[-.06em] md:text-7xl">
             {project.title}
           </h1>
-          <p className="mt-6 text-sm font-medium text-brand">Self-initiated concept project.</p>
+          <p className="mt-6 text-sm font-medium text-brand-strong">
+            Self-initiated concept project.
+          </p>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">{project.brief}</p>
           {project.theme === "business" && (
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">

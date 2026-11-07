@@ -17,7 +17,7 @@ declare global {
   }
 }
 const inputClass =
-  "mt-2 min-h-12 w-full rounded-md border border-ink/25 bg-white/35 px-4 py-3 text-sm outline-brand placeholder:text-ink/50";
+  "mt-2 min-h-12 w-full rounded-md border border-ink/25 bg-white/35 px-4 py-3 text-base outline-brand placeholder:text-ink/50 md:text-sm";
 
 export function ContactForm({ siteKey }: { siteKey: string }) {
   const widget = useRef<HTMLDivElement>(null);

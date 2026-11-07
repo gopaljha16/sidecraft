@@ -26,7 +26,14 @@ footer, pricing, gallery, and project layouts use responsive JSX utilities.
 - `app/globals.css`: Tailwind imports, theme tokens, base styles, and shared
   primitives using `@apply`.
 - `app/artwork.css`: original scalable carousel artwork.
-- `app/motion.css`: short transitions, preview motion, and reduced-motion rules.
+- `app/motion.css`: decorative transitions and reduced-motion rules.
+
+Framer Motion drives staggered scroll reveals, desktop hero artwork, short route
+entrances, spring-based navigation and gallery layouts, category indicators,
+approach crossfades, and animated native menu/FAQ disclosures. The shared motion
+provider responds to live reduced-motion changes. Floating artwork pauses outside
+the viewport and in background tabs; mobile omits continuous motion. Content and
+native disclosures remain available without JavaScript.
 
 Source detection is limited to application/components so local notes and QA
 files do not generate utility classes. VS Code uses Tailwind CSS language mode,
@@ -40,7 +47,7 @@ preferences, and the first preview and all process copy render without JavaScrip
 
 ## Local development
 
-Requires Node.js 20.9 or newer and npm.
+Requires Node.js 22.19 or newer and npm. CI uses Node.js 24, matching `.nvmrc`.
 
 ```sh
 npm ci
@@ -58,6 +65,33 @@ npm test
 npm run format
 npm run format:check
 ```
+
+GitHub Actions runs installation, formatting, API tests, build, and typechecking
+for pull requests and pushes to `main`. Email delivery stays disabled in CI.
+
+## Lighthouse audits
+
+Run a production build and start it in one terminal. In another terminal:
+
+```sh
+npm run audit:lighthouse
+```
+
+This checks the homepage, service page, gallery, and first article on mobile and
+desktop using Chrome. JSON, HTML, and a timestamped summary are saved under the
+ignored `docs/qa/lighthouse/` directory. Localhost results are labelled as local
+lab measurements. The default configuration keeps pre-launch indexing disabled;
+its SEO score can reflect that intentional restriction.
+
+After deployment, audit the real origin with:
+
+```sh
+node scripts/audit-lighthouse.mjs https://slidecraft.gopaldev.in
+```
+
+Optionally append one or more supported page paths to repeat only affected
+routes. Set `CHROME_PATH` if Chrome cannot be found automatically. Lab reports
+do not establish field Core Web Vitals or verify email delivery.
 
 Prettier handles TypeScript, React, CSS, JSON, and Markdown. The configuration
 uses two-space indentation, double quotes, semicolons, and a 100-character print

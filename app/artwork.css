@@ -29,7 +29,8 @@
     margin-top: 11%;
     margin-bottom: 5%;
   }
-  .artwork h3 {
+  .artwork .art-title {
+    margin: 0;
     font-size: 13.2cqw;
     line-height: 0.99;
     letter-spacing: -0.065em;
@@ -52,7 +53,7 @@
     background: #162544;
     color: #fbfcff;
   }
-  .artwork-saas h3 span {
+  .artwork-saas .art-title span {
     color: #9cacff;
   }
   .artwork-saas p {
@@ -98,10 +99,10 @@
   .artwork-founder .art-bottom {
     border-color: #bdb4a4;
   }
-  .artwork-founder h3 {
+  .artwork-founder .art-title {
     font-size: 17cqw;
   }
-  .artwork-founder h3 em {
+  .artwork-founder .art-title em {
     font-family: Georgia, serif;
     font-weight: 400;
     color: #9b452b;
@@ -129,10 +130,10 @@
   .artwork-education .art-bottom {
     border-color: #8ca64e;
   }
-  .artwork-education h3 {
+  .artwork-education .art-title {
     font-size: 12.4cqw;
   }
-  .artwork-education h3 > span {
+  .artwork-education .art-title > span {
     color: #526b33;
   }
   .ai-diagram {

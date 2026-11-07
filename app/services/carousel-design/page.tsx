@@ -103,8 +103,8 @@ export default function CarouselDesignPage() {
           </p>
         </div>
         <div className="grid gap-x-8 gap-y-12 md:grid-cols-3">
-          {projects.slice(0, 3).map(({ slides, ...project }) => (
-            <ProjectCard key={project.slug} project={{ ...project, cover: slides[0] }} />
+          {projects.slice(0, 3).map((project) => (
+            <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
       </section>

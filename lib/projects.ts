@@ -1,13 +1,5 @@
-export const categories = [
-  "All",
-  "SaaS & Technology",
-  "Founder Branding",
-  "Education",
-  "Marketing",
-  "Business & Case Studies",
-] as const;
-
-export type Category = (typeof categories)[number];
+import type { Category } from "./project-categories";
+export type { Category } from "./project-categories";
 export type ProjectTheme = "saas" | "founder" | "education" | "marketing" | "strategy" | "business";
 export type Slide = {
   kicker: string;

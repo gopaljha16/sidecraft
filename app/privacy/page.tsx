@@ -49,20 +49,23 @@ export default function PrivacyPage() {
                   information necessary to provide these services. Their own policies explain their
                   processing:{" "}
                   <a
-                    className="text-brand underline"
+                    className="text-brand-strong underline"
                     href="https://www.cloudflare.com/privacypolicy/"
                   >
                     Cloudflare
                   </a>
                   ,{" "}
                   <a
-                    className="text-brand underline"
+                    className="text-brand-strong underline"
                     href="https://resend.com/legal/privacy-policy"
                   >
                     Resend
                   </a>
                   , and{" "}
-                  <a className="text-brand underline" href="https://upstash.com/trust/privacy.pdf">
+                  <a
+                    className="text-brand-strong underline"
+                    href="https://upstash.com/trust/privacy.pdf"
+                  >
                     Upstash
                   </a>
                   .
@@ -80,7 +83,7 @@ export default function PrivacyPage() {
                   To ask about information you have provided, request a correction, or request
                   deletion, email{" "}
                   <a
-                    className="break-all text-brand underline"
+                    className="break-all text-brand-strong underline"
                     href={`mailto:${config.publicEmail}`}
                   >
                     {config.publicEmail}

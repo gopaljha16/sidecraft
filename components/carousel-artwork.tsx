@@ -13,11 +13,11 @@ export function CarouselArtwork({ variant }: { variant: ArtworkVariant }) {
       {variant === "saas" ? (
         <>
           <span className="art-kicker">THE SAAS GROWTH PLAYBOOK</span>
-          <h3>
+          <p className="art-title font-heading font-medium">
             Great products.
             <br />
             Better <span>growth.</span>
-          </h3>
+          </p>
           <p>
             Build a system.
             <br />
@@ -34,13 +34,13 @@ export function CarouselArtwork({ variant }: { variant: ArtworkVariant }) {
       ) : variant === "founder" ? (
         <>
           <span className="art-kicker">NOTES FROM THE JOURNEY</span>
-          <h3>
+          <p className="art-title font-heading font-medium">
             Build less.
             <br />
             <em>Mean</em>
             <br />
             more.
-          </h3>
+          </p>
           <div className="founder-note">
             <span aria-hidden="true">✳</span>
             <p>
@@ -53,13 +53,13 @@ export function CarouselArtwork({ variant }: { variant: ArtworkVariant }) {
       ) : (
         <>
           <span className="art-kicker">A FIELD GUIDE TO WHAT’S NEXT</span>
-          <h3>
+          <p className="art-title font-heading font-medium">
             The future
             <br />
             isn’t artificial.
             <br />
             <span>It’s useful.</span>
-          </h3>
+          </p>
           <div className="ai-diagram" aria-hidden="true">
             <span>IDEA</span>
             <b>+</b>

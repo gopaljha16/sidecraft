@@ -85,7 +85,7 @@ export default async function InsightPage({ params }: Props) {
                 )}
                 {section.example && (
                   <div className="mt-6 rounded-xl bg-[#eeeee7] p-6">
-                    <p className="eyebrow mb-3 text-brand">A WORKING EXAMPLE</p>
+                    <p className="eyebrow mb-3 text-brand-strong">A WORKING EXAMPLE</p>
                     <p className="text-sm leading-relaxed">{section.example}</p>
                   </div>
                 )}
@@ -102,7 +102,7 @@ export default async function InsightPage({ params }: Props) {
                     <li key={source.url}>
                       <a
                         href={source.url}
-                        className="text-sm text-brand underline underline-offset-4"
+                        className="text-sm text-brand-strong underline underline-offset-4"
                       >
                         {source.title}
                       </a>
