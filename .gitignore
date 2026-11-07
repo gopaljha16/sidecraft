@@ -16,6 +16,7 @@ next-env.d.ts
 # Internal implementation notes (keep local)
 docs/
 slidecraft-subdomain-complete-implementation-plan.md
+.browser-profile/
 
 # Logs and operating-system files
 *.log

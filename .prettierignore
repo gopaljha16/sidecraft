@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+dist/
+coverage/
+.browser-profile/
+package-lock.json
+next-env.d.ts
+docs/
+slidecraft-subdomain-complete-implementation-plan.md
+.env*
