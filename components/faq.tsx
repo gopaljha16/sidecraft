@@ -1,4 +1,5 @@
 import { faqs } from "@/lib/offer";
+import { MotionDisclosure } from "./motion-disclosure";
 
 export function Faq() {
   return (
@@ -14,15 +15,24 @@ export function Faq() {
         </div>
         <div>
           {faqs.map(({ question, answer }) => (
-            <details key={question} className="group border-b border-line py-5 first:border-t">
-              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-5 text-sm font-medium [&::-webkit-details-marker]:hidden">
-                {question}
-                <span aria-hidden="true" className="text-xl text-brand group-open:rotate-45">
-                  +
-                </span>
-              </summary>
+            <MotionDisclosure
+              key={question}
+              className="group border-b border-line py-5 first:border-t"
+              summaryClassName="flex min-h-11 cursor-pointer list-none items-center justify-between gap-5 text-sm font-medium [&::-webkit-details-marker]:hidden"
+              summary={
+                <>
+                  {question}
+                  <span
+                    aria-hidden="true"
+                    className="faq-indicator text-xl text-brand group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </>
+              }
+            >
               <p className="max-w-prose pt-4 text-sm leading-relaxed text-muted">{answer}</p>
-            </details>
+            </MotionDisclosure>
           ))}
         </div>
       </div>

@@ -1,19 +1,29 @@
 "use client";
 
-import { useId, useState } from "react";
-import { categories, type Category } from "@/lib/projects";
-import { ProjectCard, type ProjectPreview } from "./project-card";
+import { useId, useState, type ReactNode } from "react";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { gentleSpring, useMotionPreference } from "./motion-provider";
+import { categories, type Category } from "@/lib/project-categories";
+
+type FilterableProject = {
+  slug: string;
+  title: string;
+  category: Exclude<Category, "All">;
+  brief: string;
+  card: ReactNode;
+};
 
 export function PortfolioGrid({
   projects,
   featured = false,
 }: {
-  projects: ProjectPreview[];
+  projects: FilterableProject[];
   featured?: boolean;
 }) {
   const [category, setCategory] = useState<Category>("All");
   const [query, setQuery] = useState("");
   const id = useId();
+  const reducedMotion = useMotionPreference();
   const matches = projects.filter(
     (project) =>
       (category === "All" || project.category === category) &&
@@ -28,19 +38,29 @@ export function PortfolioGrid({
   return (
     <div>
       <div className="portfolio-filters mb-10 space-y-6 border-y border-line py-6">
-        <div className="flex flex-wrap gap-2" role="group" aria-label="Filter work by category">
-          {categories.map((item) => (
-            <button
-              key={item}
-              type="button"
-              aria-pressed={category === item}
-              onClick={() => setCategory(item)}
-              className="min-h-11 cursor-pointer rounded-full border border-line px-4 py-2 text-xs focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand aria-pressed:border-ink aria-pressed:bg-ink aria-pressed:text-canvas"
-            >
-              {item}
-            </button>
-          ))}
-        </div>
+        <LayoutGroup id={id}>
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Filter work by category">
+            {categories.map((item) => (
+              <motion.button
+                key={item}
+                type="button"
+                aria-pressed={category === item}
+                onClick={() => setCategory(item)}
+                whileTap={reducedMotion ? undefined : { scale: 0.96 }}
+                className="relative isolate min-h-11 cursor-pointer rounded-full border border-line px-4 py-2 text-xs focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand aria-pressed:border-ink aria-pressed:text-canvas"
+              >
+                {category === item && (
+                  <motion.span
+                    layoutId={reducedMotion ? undefined : "active-category"}
+                    className="absolute -inset-px -z-10 rounded-full bg-ink"
+                    transition={reducedMotion ? { duration: 0 } : gentleSpring}
+                  />
+                )}
+                <span className="relative">{item}</span>
+              </motion.button>
+            ))}
+          </div>
+        </LayoutGroup>
         <div className="flex flex-wrap items-end gap-4">
           <div className="w-full max-w-sm">
             <label htmlFor={id} className="mb-2 block text-xs font-medium">
@@ -71,23 +91,37 @@ export function PortfolioGrid({
         {category !== "All" ? ` in ${category}` : " to explore"}
       </p>
       <div
-        key={`${category}:${query.trim()}`}
+        style={{ position: "relative" }}
         className={
           featured
             ? "portfolio-results grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 xl:grid-cols-12"
             : "portfolio-results grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 xl:grid-cols-3"
         }
       >
-        {matches.map((project, index) => (
-          <div
-            key={project.slug}
-            className={
-              featured ? (index < 2 ? "min-w-0 xl:col-span-6" : "min-w-0 xl:col-span-3") : "min-w-0"
-            }
-          >
-            <ProjectCard project={project} />
-          </div>
-        ))}
+        <AnimatePresence initial={false} mode="popLayout">
+          {matches.map((project, index) => (
+            <motion.div
+              key={project.slug}
+              layout={reducedMotion ? false : "position"}
+              initial={{ opacity: 0, y: reducedMotion ? 0 : 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: reducedMotion ? 0 : -8 }}
+              transition={
+                reducedMotion ? { duration: 0 } : { duration: 0.28, layout: gentleSpring }
+              }
+              whileHover={reducedMotion ? undefined : { y: -5 }}
+              className={
+                featured
+                  ? index < 2
+                    ? "min-w-0 xl:col-span-6"
+                    : "min-w-0 xl:col-span-3"
+                  : "min-w-0"
+              }
+            >
+              {project.card}
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
       {matches.length === 0 && (
         <div className="rounded-2xl border border-line px-6 py-14 text-center">

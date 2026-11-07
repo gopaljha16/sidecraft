@@ -1,11 +1,6 @@
-/* Movement is confined to opacity/transform, with native scrolling in the viewer. */
+/* Framer Motion owns reveals, layout, floating artwork and disclosures.
+   CSS handles small decorative transitions; the viewer keeps native scrolling. */
 @layer components {
-  .nav-content {
-    transition: transform var(--motion-medium) var(--ease-editorial);
-  }
-  .header-shell[data-compact="true"] .nav-content {
-    transform: scale(0.98);
-  }
   .nav-link {
     position: relative;
   }
@@ -31,9 +26,6 @@
   .text-link:is(:hover, :focus-visible) > svg {
     transform: translateX(3px);
   }
-  .project-card-link {
-    transition: transform var(--motion-medium) var(--ease-editorial);
-  }
   .project-thumbnail {
     overflow: hidden;
   }
@@ -41,9 +33,6 @@
     transition: transform var(--motion-medium) var(--ease-editorial);
   }
   @media (hover: hover) {
-    .project-card-link:hover {
-      transform: translateY(-6px);
-    }
     .project-card-link:hover .project-thumbnail > * {
       transform: scale(1.02);
     }
@@ -54,25 +43,9 @@
   .hero-card .artwork {
     border-radius: 8px;
   }
-  .hero-float {
-    animation: gentle-float 8s ease-in-out infinite;
-    animation-play-state: paused;
-  }
-  .hero-card:nth-of-type(2) .hero-float {
-    animation-delay: -2s;
-  }
-  .hero-card:nth-of-type(3) .hero-float {
-    animation-delay: -4s;
-  }
-  .hero[data-in-view="true"] .hero-float {
-    animation-play-state: running;
-  }
   .approach-preview,
   .approach-notes {
     container-type: inline-size;
-  }
-  .approach-state {
-    animation: preview-enter var(--motion-medium) var(--ease-editorial);
   }
   .approach-state > .artwork {
     height: 100%;
@@ -107,40 +80,8 @@
   .delivery-fan > * {
     border-radius: 4px;
   }
-  .portfolio-results {
-    animation: results-enter 200ms var(--ease-editorial);
-  }
-  @keyframes gentle-float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-6px);
-    }
-  }
-  @keyframes preview-enter {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  @keyframes results-enter {
-    from {
-      opacity: 0.3;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  @media (max-width: 767px) {
-    .hero-float {
-      animation: none;
-    }
+  .faq-indicator {
+    transition: transform var(--motion-fast) var(--ease-editorial);
   }
 }
 @media (prefers-reduced-motion: reduce) {

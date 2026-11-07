@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { Arrow } from "@/components/icons";
 import { CarouselArtwork } from "@/components/carousel-artwork";
-import { PortfolioGrid } from "@/components/portfolio-grid";
+import { Portfolio } from "@/components/portfolio";
 import { MonthlyPackage } from "@/components/monthly-package";
 import { DeliveryProcess } from "@/components/delivery-process";
 import { Faq } from "@/components/faq";
 import { Approach } from "@/components/approach";
 import { ProjectSlide } from "@/components/project-slide";
-import { MotionEnhancements } from "@/components/motion-enhancements";
 import { projects } from "@/lib/projects";
 import { site } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo";
@@ -23,7 +22,6 @@ export const metadata = pageMetadata(
 export default function Home() {
   return (
     <main id="main-content">
-      <MotionEnhancements />
       <section
         className="hero container grid items-center gap-5 pt-11 pb-14 md:min-h-[680px] md:grid-cols-2 md:gap-4 md:py-16 xl:min-h-[760px] xl:gap-8"
         aria-labelledby="hero-heading"
@@ -142,10 +140,7 @@ export default function Home() {
             One shared belief: every slide should earn the next swipe.
           </p>
         </div>
-        <PortfolioGrid
-          featured
-          projects={projects.map(({ slides, ...project }) => ({ ...project, cover: slides[0] }))}
-        />
+        <Portfolio featured />
         <Link className="text-link mt-10" href="/work">
           Explore & filter all work <Arrow diagonal />
         </Link>
@@ -214,7 +209,7 @@ export default function Home() {
               ],
             ].map(([number, title, description]) => (
               <div key={number} className="flex gap-6 border-b border-line py-7 first:border-t">
-                <span className="pt-1.5 text-xs text-brand">{number}</span>
+                <span className="pt-1.5 text-xs text-brand-strong">{number}</span>
                 <div>
                   <h3 className="text-2xl tracking-tight">{title}</h3>
                   <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">{description}</p>

@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useMotionPreference } from "./motion-provider";
 import { Arrow } from "./icons";
 
 const steps = [
@@ -47,6 +49,7 @@ export function Approach({
   const list = useRef<HTMLOListElement>(null);
   const manual = useRef(false);
   const id = useId();
+  const reducedMotion = useMotionPreference();
   useEffect(() => {
     const desktop = window.matchMedia("(min-width: 1024px)");
     let observer: IntersectionObserver | undefined;
@@ -151,93 +154,102 @@ export function Approach({
           </ol>
           <div className="approach-preview-column mx-auto w-full max-w-lg lg:sticky lg:top-32">
             <figure id={id} aria-labelledby={`${id}-caption`}>
-              <div className="approach-preview aspect-4/5 overflow-hidden rounded-xl bg-canvas text-ink">
-                <div key={active} className="approach-state h-full">
-                  {active === 0 ? (
-                    <div className="approach-notes flex h-full flex-col p-[8%]">
-                      <div className="flex items-center justify-between border-b border-line pb-[5%] text-[2.4cqw] tracking-wider">
-                        <span>THE STARTING POINT</span>
-                        <span>01 / 04</span>
+              <div className="approach-preview relative aspect-4/5 overflow-hidden rounded-xl bg-canvas text-ink">
+                <AnimatePresence initial={false}>
+                  <motion.div
+                    key={active}
+                    className="approach-state absolute inset-0 h-full"
+                    initial={{ opacity: 0, y: reducedMotion ? 0 : 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: reducedMotion ? 0 : -10 }}
+                    transition={{ duration: reducedMotion ? 0 : 0.32 }}
+                  >
+                    {active === 0 ? (
+                      <div className="approach-notes flex h-full flex-col p-[8%]">
+                        <div className="flex items-center justify-between border-b border-line pb-[5%] text-[2.4cqw] tracking-wider">
+                          <span>THE STARTING POINT</span>
+                          <span>01 / 04</span>
+                        </div>
+                        <span className="mt-[12%] text-[2.5cqw] tracking-widest text-muted">
+                          ONE RAW IDEA
+                        </span>
+                        <h3 className="mt-[5%] text-[12cqw] leading-none tracking-[-.06em]">
+                          What makes
+                          <br />a product
+                          <br />
+                          <span className="text-brand">feel useful?</span>
+                        </h3>
+                        <p className="mt-[8%] border-l-2 border-brand pl-[5%] text-[3.5cqw] leading-relaxed">
+                          Audience: SaaS founders
+                          <br />
+                          Goal: a better first experience
+                        </p>
+                        <ul className="mt-[7%] space-y-[3%] text-[3cqw] text-muted">
+                          <li>↳ Find the first useful outcome.</li>
+                          <li>↳ Remove unnecessary setup.</li>
+                          <li>↳ Learn where people get stuck.</li>
+                        </ul>
+                        <span className="mt-auto border-t border-line pt-[5%] text-[2.4cqw] tracking-wider">
+                          A BRIEF BEFORE A BEAUTIFUL SLIDE.
+                        </span>
                       </div>
-                      <span className="mt-[12%] text-[2.5cqw] tracking-widest text-muted">
-                        ONE RAW IDEA
-                      </span>
-                      <h3 className="mt-[5%] text-[12cqw] leading-none tracking-[-.06em]">
-                        What makes
-                        <br />a product
-                        <br />
-                        <span className="text-brand">feel useful?</span>
-                      </h3>
-                      <p className="mt-[8%] border-l-2 border-brand pl-[5%] text-[3.5cqw] leading-relaxed">
-                        Audience: SaaS founders
-                        <br />
-                        Goal: a better first experience
-                      </p>
-                      <ul className="mt-[7%] space-y-[3%] text-[3cqw] text-muted">
-                        <li>↳ Find the first useful outcome.</li>
-                        <li>↳ Remove unnecessary setup.</li>
-                        <li>↳ Learn where people get stuck.</li>
-                      </ul>
-                      <span className="mt-auto border-t border-line pt-[5%] text-[2.4cqw] tracking-wider">
-                        A BRIEF BEFORE A BEAUTIFUL SLIDE.
-                      </span>
-                    </div>
-                  ) : active === 1 ? (
-                    <div className="approach-notes flex h-full flex-col p-[8%]">
-                      <span className="border-b border-line pb-[5%] text-[2.4cqw] tracking-wider">
-                        THE SAME IDEA, GIVEN STRUCTURE
-                      </span>
-                      <h3 className="my-[6%] text-[10cqw] leading-none tracking-tight">
-                        Seven slides.
-                        <br />
-                        <span className="text-brand">One clear story.</span>
-                      </h3>
-                      <ol className="flex flex-1 flex-col justify-between">
-                        {outline.map(([label, text], index) => (
-                          <li
-                            key={label}
-                            className="flex items-baseline gap-[5%] border-t border-line py-[1.5%]"
-                          >
-                            <span className="text-[2.6cqw] text-brand">0{index + 1}</span>
-                            <div>
-                              <span className="block text-[2.4cqw] tracking-wider text-muted uppercase">
-                                {label}
-                              </span>
-                              <span className="mt-[1%] block text-[3cqw]">{text}</span>
+                    ) : active === 1 ? (
+                      <div className="approach-notes flex h-full flex-col p-[8%]">
+                        <span className="border-b border-line pb-[5%] text-[2.4cqw] tracking-wider">
+                          THE SAME IDEA, GIVEN STRUCTURE
+                        </span>
+                        <h3 className="my-[6%] text-[10cqw] leading-none tracking-tight">
+                          Seven slides.
+                          <br />
+                          <span className="text-brand">One clear story.</span>
+                        </h3>
+                        <ol className="flex flex-1 flex-col justify-between">
+                          {outline.map(([label, text], index) => (
+                            <li
+                              key={label}
+                              className="flex items-baseline gap-[5%] border-t border-line py-[1.5%]"
+                            >
+                              <span className="text-[2.6cqw] text-brand-strong">0{index + 1}</span>
+                              <div>
+                                <span className="block text-[2.4cqw] tracking-wider text-muted uppercase">
+                                  {label}
+                                </span>
+                                <span className="mt-[1%] block text-[3cqw]">{text}</span>
+                              </div>
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    ) : active === 2 ? (
+                      design
+                    ) : (
+                      <div className="approach-notes relative flex h-full flex-col overflow-hidden p-[8%]">
+                        <span className="text-[2.4cqw] tracking-wider">
+                          A COHESIVE CONTENT SYSTEM
+                        </span>
+                        <h3 className="mt-[7%] text-[11cqw] leading-none tracking-tight">
+                          Ready for
+                          <br />
+                          <span className="text-brand">the next swipe.</span>
+                        </h3>
+                        <div
+                          className="relative mt-[10%] h-[48%]"
+                          aria-label="Three finished slide concepts"
+                        >
+                          {deliverySlides.map((slide, index) => (
+                            <div key={index} className={`delivery-fan delivery-fan-${index}`}>
+                              {slide}
                             </div>
-                          </li>
-                        ))}
-                      </ol>
-                    </div>
-                  ) : active === 2 ? (
-                    design
-                  ) : (
-                    <div className="approach-notes relative flex h-full flex-col overflow-hidden p-[8%]">
-                      <span className="text-[2.4cqw] tracking-wider">
-                        A COHESIVE CONTENT SYSTEM
-                      </span>
-                      <h3 className="mt-[7%] text-[11cqw] leading-none tracking-tight">
-                        Ready for
-                        <br />
-                        <span className="text-brand">the next swipe.</span>
-                      </h3>
-                      <div
-                        className="relative mt-[10%] h-[48%]"
-                        aria-label="Three finished slide concepts"
-                      >
-                        {deliverySlides.map((slide, index) => (
-                          <div key={index} className={`delivery-fan delivery-fan-${index}`}>
-                            {slide}
-                          </div>
-                        ))}
+                          ))}
+                        </div>
+                        <p className="mt-auto text-[4cqw] font-medium">8 carousels per month.</p>
+                        <p className="mt-[2%] text-[2.5cqw] text-muted">
+                          Illustrative concept assets. A repeatable creative rhythm.
+                        </p>
                       </div>
-                      <p className="mt-auto text-[4cqw] font-medium">8 carousels per month.</p>
-                      <p className="mt-[2%] text-[2.5cqw] text-muted">
-                        Illustrative concept assets. A repeatable creative rhythm.
-                      </p>
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
               </div>
               <figcaption
                 id={`${id}-caption`}

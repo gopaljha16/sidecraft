@@ -9,11 +9,16 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "tsx --test tests/contact.test.ts"
+    "test": "tsx --test tests/contact.test.ts",
+    "audit:lighthouse": "node scripts/audit-lighthouse.mjs"
+  },
+  "engines": {
+    "node": ">=22.19"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource-variable/space-grotesk": "^5.2.10",
+    "framer-motion": "^14.10.1",
     "next": "^16.4.5",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
@@ -24,6 +29,8 @@
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "chrome-launcher": "^1.2.3",
+    "lighthouse": "^13.6.0",
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.5",
