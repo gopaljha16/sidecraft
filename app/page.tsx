@@ -9,6 +9,16 @@ import { Approach } from "@/components/approach";
 import { ProjectSlide } from "@/components/project-slide";
 import { MotionEnhancements } from "@/components/motion-enhancements";
 import { projects } from "@/lib/projects";
+import { site } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
+import { InsightCards } from "@/components/insight-cards";
+import { ContactSection } from "@/components/contact-section";
+
+export const metadata = pageMetadata(
+  "/",
+  "Slidecraft Studio — Premium Carousel Design for Founders & Brands",
+  site.description,
+);
 
 export default function Home() {
   return (
@@ -247,38 +257,24 @@ export default function Home() {
           ✳
         </span>
       </section>
-      <Faq />
-      <section className="bg-lime py-16 md:py-20" id="contact" aria-labelledby="contact-heading">
-        <div className="container">
-          <p className="eyebrow">YOUR NEXT GOOD IDEA STARTS HERE.</p>
-          <h2
-            data-reveal
-            id="contact-heading"
-            className="relative mt-8 text-[clamp(2.8rem,8vw,4.5rem)] tracking-[-.065em] md:text-[clamp(3.2rem,6.8vw,6.4rem)]"
-          >
-            Let’s make your
-            <br />
-            next scroll <em className="font-[Georgia] font-normal">stop.</em>
-            <span
-              className="absolute top-0 right-0 hidden min-[400px]:inline md:text-[1.3em]"
-              aria-hidden="true"
-            >
-              ↗
-            </span>
-          </h2>
-          <div className="mt-10 flex flex-col justify-between gap-7 md:flex-row md:items-end">
-            <p className="text-sm leading-relaxed">
-              Bring your expertise.
+      <section className="container py-20 md:py-28" aria-labelledby="insights-heading">
+        <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p className="eyebrow mb-5">FROM THE STUDIO NOTEBOOK</p>
+            <h2 id="insights-heading">
+              A little clarity,
               <br />
-              We’ll bring structure, words, and design.
-            </p>
-            <span className="border-b border-[#829f55] pb-2 text-xs">
-              <span className="mr-2 inline-block size-1.5 rounded-full bg-ink" />
-              Project enquiries opening soon
-            </span>
+              before you create.
+            </h2>
           </div>
+          <Link className="text-link" href="/insights">
+            Explore the guides <Arrow diagonal />
+          </Link>
         </div>
+        <InsightCards />
       </section>
+      <Faq />
+      <ContactSection />
     </main>
   );
 }

@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { projects } from "@/lib/projects";
 import { PortfolioGrid } from "@/components/portfolio-grid";
 import { ProjectCta } from "@/components/project-cta";
 
-export const metadata: Metadata = {
-  title: "Carousel Design Portfolio — Slidecraft Studio",
-  description:
-    "Explore six self-initiated carousel concepts, with seven complete slides each and the creative thinking behind the work.",
-};
+export const metadata = pageMetadata(
+  "/work",
+  "Carousel Design Portfolio — Slidecraft Studio",
+  "Explore six self-initiated carousel concepts, with seven complete slides each and the creative thinking behind the work.",
+);
 
 export default function WorkPage() {
   return (

@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import { pageMetadata, jsonLd } from "@/lib/seo";
+import { site } from "@/lib/site";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
 import { ProjectCard } from "@/components/project-card";
@@ -8,15 +9,40 @@ import { Faq } from "@/components/faq";
 import { ProjectCta } from "@/components/project-cta";
 import { Arrow } from "@/components/icons";
 
-export const metadata: Metadata = {
-  title: "LinkedIn & Instagram Carousel Design Services — Slidecraft Studio",
-  description:
-    "A monthly carousel content system for founders and brands. Eight carousels with research, copy, design, captions, and two revision rounds, from ₹10,000/month.",
-};
+export const metadata = pageMetadata(
+  "/services/carousel-design",
+  "LinkedIn & Instagram Carousel Design Services — Slidecraft Studio",
+  "A monthly carousel content system for founders and brands. Eight carousels with research, copy, design, captions, and two revision rounds, from ₹10,000/month.",
+);
 
 export default function CarouselDesignPage() {
   return (
     <main id="main-content">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            name: "Monthly LinkedIn & Instagram Carousel Design",
+            provider: { "@id": `${site.url}/#studio` },
+            url: `${site.url}/services/carousel-design`,
+            description:
+              "Eight carousels per month, six to eight slides each, research, writing, design, captions, and two revision rounds. Additional services quoted separately.",
+            offers: {
+              "@type": "Offer",
+              description:
+                "Monthly package starting from INR 10,000; final scope agreed before work begins.",
+              priceSpecification: {
+                "@type": "UnitPriceSpecification",
+                priceCurrency: "INR",
+                minPrice: 10000,
+                unitText: "month",
+              },
+            },
+          }),
+        }}
+      />
       <section className="container pt-16 pb-20 md:pt-24 md:pb-28">
         <p className="eyebrow mb-6">LINKEDIN & INSTAGRAM CAROUSEL DESIGN</p>
         <h1 className="max-w-4xl font-heading text-5xl leading-[1.03] tracking-[-.06em] md:text-7xl">

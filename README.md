@@ -13,8 +13,10 @@ repository's implementation scope.
 The studio includes a responsive landing page, a filterable gallery of six
 self-initiated concepts, seven-slide viewers, individual project stories, and a
 dedicated carousel-design service page. Pricing, delivery responsibilities, and
-FAQs share the same source data. Email delivery is planned for a later phase;
-enquiries are currently labelled as opening soon.
+FAQs share the same source data. Two original studio guides, canonical metadata,
+social preview images, sitemap, robots rules, and truthful structured data are
+included. The enquiry form and Resend integration are implemented; live sending
+stays disabled until provider configuration and delivery verification are complete.
 
 ## Styling
 
@@ -52,6 +54,7 @@ Open http://localhost:3000.
 ```sh
 npm run typecheck
 npm run build
+npm test
 npm run format
 npm run format:check
 ```
@@ -63,8 +66,49 @@ EditorConfig provides matching editor defaults. Local notes, generated
 output, and dependency lockfiles are excluded from formatting.
 
 Fonts are bundled locally through `next/font/local`; the production site does
-not fetch fonts from Google. This is a local review build with indexing disabled.
-Production deployment and search metadata follow in later phases.
+not fetch fonts from Google. Indexing defaults to disabled until a verified
+production deployment explicitly enables it. Vercel previews stay noindex.
+
+## Enquiry configuration
+
+Use `.env.example` as the reference for the ignored `.env.local` file and the
+hosting project's environment variables. Keep secrets out of Git and chat.
+
+The form requires a real monitored public/receiving address, a verified Resend
+sending address, a Cloudflare Turnstile widget for the actual hostname, Upstash
+Redis REST credentials, and a random server-only rate-limit secret of at least
+32 characters. `CONTACT_FROM_EMAIL` and `CONTACT_TO_EMAIL` contain plain email
+addresses; the server adds the display name to the sender.
+
+The studio owner must confirm the actual retention period and review the
+privacy notice before setting `CONTACT_PRIVACY_REVIEWED=true`. Retention is
+managed in the mailbox; this application does not automatically purge email.
+Set `CONTACT_ENABLED=true` first on a controlled preview for delivery testing.
+Only enable the public production form after verifying arrival in the inbox.
+Changing build-time environment values requires a fresh deployment.
+
+For a controlled preview, set `CONTACT_PREVIEW_ORIGIN` to its exact origin.
+Preview forms are otherwise disabled on Vercel. The API validates the security
+token's hostname/action, then uses atomic Redis limits before asking Resend to
+send a plain-text message. Limits are three submissions per normalized sender
+and 30 total per one-hour window. No in-memory fallback is used when Redis fails.
+
+The success response means the email provider accepted the message. It is not
+proof of inbox delivery. Automated tests mock all external providers and send no
+real emails; live delivery remains a separate launch check.
+
+## Production setup
+
+Deploy this repository as a separate Next.js project on hosting that permits
+commercial use. Add only `slidecraft.gopaldev.in` and use the exact DNS target
+provided for that hosting project. Existing personal-portfolio and mail records
+must remain unchanged. No DNS records have been changed by this code.
+
+After HTTPS and functional release checks pass, set `SITE_INDEXING_ENABLED=true`
+for production. Vercel uses `VERCEL_ENV`; other hosts also require
+`DEPLOYMENT_ENV=production`. The optional `GOOGLE_SITE_VERIFICATION` value adds
+the URL-prefix verification tag; account verification and sitemap submission
+still happen in Search Console. No analytics script is installed by default.
 
 ## Commit workflow
 

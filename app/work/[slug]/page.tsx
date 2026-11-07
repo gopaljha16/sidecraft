@@ -6,6 +6,8 @@ import { ProjectSlide } from "@/components/project-slide";
 import { ProjectViewer } from "@/components/project-viewer";
 import { ProjectCta } from "@/components/project-cta";
 import { Arrow } from "@/components/icons";
+import { pageMetadata, jsonLd } from "@/lib/seo";
+import { site } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 export function generateStaticParams() {
@@ -15,10 +17,11 @@ export const dynamicParams = false;
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProject((await params).slug);
   if (!project) notFound();
-  return {
-    title: `${project.title} — Carousel Concept | Slidecraft Studio`,
-    description: `${project.brief} A self-initiated, seven-slide concept project.`,
-  };
+  return pageMetadata(
+    `/work/${project.slug}`,
+    `${project.title} — Carousel Concept | Slidecraft Studio`,
+    `${project.brief} A self-initiated, seven-slide concept project.`,
+  );
 }
 
 export default async function ProjectPage({ params }: Props) {
@@ -27,6 +30,21 @@ export default async function ProjectPage({ params }: Props) {
   const next = projects[(projects.indexOf(project) + 1) % projects.length];
   return (
     <main id="main-content">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd({
+            "@context": "https://schema.org",
+            "@type": "CreativeWork",
+            name: `${project.title} — self-initiated concept`,
+            description: `${project.brief} Self-initiated concept project; no commissioned client results claimed.`,
+            url: `${site.url}/work/${project.slug}`,
+            creator: { "@id": `${site.url}/#studio` },
+            genre: project.category,
+            isAccessibleForFree: true,
+          }),
+        }}
+      />
       <div className="container pt-12 md:pt-20">
         <Link className="text-link" href="/work">
           <span className="rotate-180">

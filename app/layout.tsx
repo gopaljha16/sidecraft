@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { site } from "@/lib/site";
+import { indexingEnabled, jsonLd } from "@/lib/seo";
 import "./globals.css";
 
 const display = localFont({
@@ -20,14 +21,29 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: "Slidecraft Studio — Premium Carousel Design for Founders & Brands",
   description: site.description,
-  // Local review only; indexing is enabled with production SEO in Phase 4.
-  robots: { index: false, follow: false },
+  robots: { index: indexingEnabled(), follow: indexingEnabled() },
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: jsonLd({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "@id": `${site.url}/#studio`,
+              name: site.name,
+              url: site.url,
+              description: site.description,
+            }),
+          }}
+        />
         <a
           className="fixed -top-24 left-4 z-50 bg-ink p-4 text-white focus:top-3"
           href="#main-content"

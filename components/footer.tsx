@@ -10,9 +10,14 @@ export function Footer() {
           Good ideas deserve
           <br />a better frame.
         </p>
-        <nav className="flex w-full gap-8 text-xs md:w-auto" aria-label="Footer navigation">
+        <nav
+          className="flex w-full flex-wrap gap-x-6 gap-y-4 text-xs md:w-auto"
+          aria-label="Footer navigation"
+        >
           <Link href="/work">Work</Link>
           <Link href="/services/carousel-design">Services</Link>
+          <Link href="/insights">Insights</Link>
+          <Link href="/privacy">Privacy</Link>
           <Link href="/#contact">Contact</Link>
         </nav>
       </div>

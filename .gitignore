@@ -17,6 +17,7 @@ next-env.d.ts
 docs/
 slidecraft-subdomain-complete-implementation-plan.md
 .browser-profile/
+AGENTS.md
 
 # Logs and operating-system files
 *.log
