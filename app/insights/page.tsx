@@ -22,8 +22,7 @@ export default function InsightsPage() {
           Practical ideas for people commissioning, planning, and creating thoughtful carousel
           content.
         </p>
-        <h2 className="sr-only">Studio guides</h2>
-        <InsightCards />
+        <InsightCards headingLevel="h2" />
       </section>
       <ProjectCta />
     </main>

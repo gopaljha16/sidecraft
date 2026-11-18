@@ -144,7 +144,7 @@ export const insights: readonly Insight[] = [
         paragraphs: [
           "After publishing, review the questions people ask and the conversations that follow. If you can attribute an enquiry to a piece of content, record that connection without treating one event as proof that the entire plan works.",
           "For a small business, a useful content review can be qualitative: what was misunderstood, what prompted a relevant question, and which examples were worth developing. Pair that with whatever reliable channel and enquiry data you actually have.",
-          "The monthly offer starts at ₹10,000 for eight carousels, with research, content structure, hooks and slide copywriting, premium design, captions, and two revision rounds each. Additional services and publishing are separately scoped. A plan becomes useful when the examples and decisions are genuinely yours.",
+          "The monthly package includes eight carousels, with research, content structure, hooks and slide copywriting, premium design, captions, and two revision rounds each. Pricing is quoted individually based on your scope, content needs, and timeline. Additional services and publishing are separately scoped. A plan becomes useful when the examples and decisions are genuinely yours.",
         ],
       },
     ],

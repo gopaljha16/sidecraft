@@ -2,7 +2,8 @@ import Link from "next/link";
 import { insights, readingMinutes } from "@/lib/insights";
 import { Arrow } from "./icons";
 
-export function InsightCards() {
+export function InsightCards({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3" }) {
+  const Heading = headingLevel;
   return (
     <div className="grid gap-8 md:grid-cols-2">
       {insights.map((article, index) => (
@@ -15,9 +16,9 @@ export function InsightCards() {
               <span className="eyebrow text-muted">{article.category}</span>
               <span className="font-heading text-4xl tracking-tight text-brand">0{index + 1}</span>
             </div>
-            <h3 className="mt-10 max-w-lg text-3xl leading-tight tracking-tight">
+            <Heading className="mt-10 max-w-lg text-3xl leading-tight tracking-tight">
               {article.title}
-            </h3>
+            </Heading>
             <p className="mt-5 max-w-lg text-sm leading-relaxed text-muted">
               {article.description}
             </p>

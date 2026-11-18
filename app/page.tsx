@@ -70,44 +70,47 @@ export default function Home() {
           >
             A consistent voice. A distinctive look.
             <br />
-            <strong className="font-medium text-ink">Monthly content packages from ₹10,000.</strong>
+            <strong className="font-medium text-ink">Custom pricing for your content needs.</strong>
           </p>
         </div>
         <div
           className="relative mx-auto mt-10 aspect-[1/1.15] w-[90%] max-w-[480px] min-w-0 md:mt-0 md:aspect-auto md:h-[490px] md:w-full md:max-w-none xl:h-[570px]"
           aria-label="Three original carousel cover concepts"
         >
-          <span className="absolute -top-[3%] left-0 text-[7px] tracking-[.15em] md:top-0 md:left-[5%]">
-            A FEW IDEAS, BEAUTIFULLY FRAMED.
-          </span>
-          <div className="hero-card absolute top-[6%] -right-[3%] z-1 w-[64%] rotate-[11deg] md:top-[35px] md:-right-[2%] md:w-[70%] xl:top-[25px] xl:w-[64%]">
-            <div data-reveal data-reveal-delay="120">
+          <div className="hero-card hero-card-education absolute top-[6%] -right-[3%] z-1 w-[64%] rotate-[11deg] md:top-[35px] md:-right-[2%] md:w-[70%] xl:top-[25px] xl:w-[64%]">
+            <div>
               <div className="hero-float rounded-xl border-[5px] border-canvas shadow-[0_15px_30px_rgb(21_22_25/.09)]">
                 <CarouselArtwork variant="education" />
               </div>
             </div>
           </div>
-          <div className="hero-card absolute top-[17%] -left-[2%] z-2 w-[64%] -rotate-12 md:top-[90px] md:w-[70%] xl:top-[85px] xl:left-0 xl:w-[64%]">
-            <div data-reveal data-reveal-delay="220">
+          <div className="hero-card hero-card-founder absolute top-[17%] -left-[2%] z-2 w-[64%] -rotate-12 md:top-[90px] md:w-[70%] xl:top-[85px] xl:left-0 xl:w-[64%]">
+            <div>
               <div className="hero-float rounded-xl border-[5px] border-canvas shadow-[0_15px_30px_rgb(21_22_25/.09)]">
                 <CarouselArtwork variant="founder" />
               </div>
             </div>
           </div>
-          <div className="hero-card absolute top-[25%] right-[8%] z-3 w-[64%] rotate-3 md:top-[140px] md:right-[4%] md:w-[70%] xl:top-[118px] xl:right-[9%] xl:w-[64%]">
-            <div data-reveal data-reveal-delay="320">
+          <div className="hero-card hero-card-saas absolute top-[25%] right-[8%] z-3 w-[64%] rotate-3 md:top-[140px] md:right-[4%] md:w-[70%] xl:top-[118px] xl:right-[9%] xl:w-[64%]">
+            <div>
               <div className="hero-float rounded-xl border-[5px] border-canvas shadow-[0_15px_30px_rgb(21_22_25/.09)]">
                 <CarouselArtwork variant="saas" />
               </div>
             </div>
           </div>
-          <span className="absolute bottom-0 left-[2%] -rotate-5 font-heading text-xs md:bottom-1 md:text-sm">
+          <span
+            aria-hidden="true"
+            className="absolute bottom-0 left-[2%] hidden -rotate-5 font-heading text-xs md:bottom-1 md:text-sm"
+          >
             <span className="mr-2 text-3xl" aria-hidden="true">
               ↳
             </span>
             Small format. Big presence.
           </span>
-          <span className="absolute right-0 -bottom-6 text-[6px] tracking-widest text-muted md:text-[7px]">
+          <span
+            aria-hidden="true"
+            className="absolute right-0 -bottom-6 hidden text-[6px] tracking-widest text-muted md:text-[7px]"
+          >
             SELF-INITIATED CONCEPT PROJECTS
           </span>
         </div>
@@ -131,7 +134,7 @@ export default function Home() {
             <h2 id="work-heading">
               Design that
               <br />
-              <span className="text-[#85867f]">communicates.</span>
+              <span className="text-muted">communicates.</span>
             </h2>
           </div>
           <p className="max-w-xs text-sm leading-relaxed text-muted">
@@ -175,7 +178,7 @@ export default function Home() {
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:gap-16">
-          <div className="flex flex-col items-start rounded-2xl bg-[#eeeee7] p-8 lg:p-10">
+          <div className="flex flex-col items-start rounded-2xl bg-surface p-8 lg:p-10">
             <span className="eyebrow">THE SIGNATURE SERVICE</span>
             <h3 className="relative my-8 w-full text-[clamp(3rem,5vw,4.7rem)] leading-none tracking-[-.06em]">
               Carousel
@@ -234,7 +237,7 @@ export default function Home() {
           <h2 id="about-heading">
             Small studio.
             <br />
-            <span className="text-[#85867f]">Considered work.</span>
+            <span className="text-muted">Considered work.</span>
           </h2>
           <p className="mt-7 max-w-md text-sm leading-relaxed text-muted">
             Slidecraft is an independent creative studio focused on one thing: giving good ideas the

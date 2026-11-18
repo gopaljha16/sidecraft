@@ -24,10 +24,9 @@ export function MonthlyPackage() {
       <div className="border-t border-line p-7 md:border-t-0 md:border-l md:p-10 lg:p-12">
         <span className="eyebrow">MONTHLY CAROUSEL CONTENT</span>
         <p className="my-6 flex flex-wrap items-baseline gap-1.5 font-heading text-[clamp(2.5rem,3.7vw,3.5rem)] leading-tight tracking-[-2px]">
-          <span className="font-sans text-xs tracking-normal text-muted">from</span>
-          {offer.price}
-          <span className="font-sans text-xs tracking-normal text-muted">/ month</span>
+          {offer.pricingLabel}
         </p>
+        <p className="text-sm leading-relaxed text-muted">{offer.pricingDescription}</p>
         <ul className="my-6 grid list-none gap-3 text-sm leading-relaxed">
           {offer.inclusions.map((item) => (
             <li key={item} className="flex gap-3">
@@ -39,7 +38,7 @@ export function MonthlyPackage() {
           ))}
         </ul>
         <Link className="button mt-2" href="/#contact">
-          Request a monthly plan <Arrow diagonal />
+          Request a quote <Arrow diagonal />
         </Link>
         <p className="mt-4 text-xs leading-relaxed text-muted">
           Additional services are quoted separately. Scope, delivery, and terms agreed before

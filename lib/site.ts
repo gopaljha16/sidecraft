@@ -12,5 +12,5 @@ export const site = {
   name: "Slidecraft Studio",
   url: canonical,
   description:
-    "Premium LinkedIn and Instagram carousel design for founders and brands. Clear stories, distinctive design, and monthly content from ₹10,000.",
+    "Premium LinkedIn and Instagram carousel design for founders and brands. Clear stories, distinctive design, and custom pricing for your content needs.",
 };

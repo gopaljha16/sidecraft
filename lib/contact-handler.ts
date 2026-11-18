@@ -60,6 +60,12 @@ for _, key in ipairs(KEYS) do
   if value == 1 then redis.call('EXPIRE', key, 3600) end
 end
 return 1`;
+const rollbackRateScript = `
+for _, key in ipairs(KEYS) do
+  local value = tonumber(redis.call('GET', key) or '0')
+  if value <= 1 then redis.call('DEL', key) else redis.call('DECR', key) end
+end
+return 1`;
 
 function reply(
   status: number,
@@ -158,6 +164,23 @@ export function createContactHandler(config: ContactConfig | null, send: typeof 
           undefined,
           { "Retry-After": "3600" },
         );
+      const rateKeys = [`slidecraft:contact:sender:${senderKey}`, "slidecraft:contact:global"];
+      const releaseAllowance = async () => {
+        try {
+          await send(config.redisUrl, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${config.redisToken}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(["EVAL", rollbackRateScript, "2", ...rateKeys]),
+            signal: AbortSignal.timeout(8000),
+            cache: "no-store",
+          });
+        } catch {
+          // The failure response remains correct even if Redis cannot release the allowance.
+        }
+      };
       const text = [
         "New Slidecraft Studio enquiry",
         `Name: ${name}`,
@@ -171,28 +194,38 @@ export function createContactHandler(config: ContactConfig | null, send: typeof 
         brief,
       ].join("\n");
       const digest = createHash("sha256").update(text).digest("hex");
-      const result = await send("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${config.resendKey}`,
-          "Content-Type": "application/json",
-          "Idempotency-Key": `enquiry/${requestId}/${digest}`,
-        },
-        body: JSON.stringify({
-          from: `Slidecraft Studio <${config.fromEmail}>`,
-          to: [config.toEmail],
-          reply_to: email,
-          subject: "New Slidecraft Studio enquiry",
-          text,
-        }),
-        signal: AbortSignal.timeout(8000),
-        cache: "no-store",
-      });
-      if (!result.ok) return reply(502, "Your enquiry could not be sent. Please try again later.");
-      const accepted = (await result.json()) as { id?: string; error?: unknown };
-      if (typeof accepted.id !== "string" || !accepted.id || accepted.error)
-        return reply(502, "Your enquiry could not be sent. Please try again later.");
-      return reply(200, "Thank you. Your enquiry has been accepted for email delivery.");
+      try {
+        const result = await send("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${config.resendKey}`,
+            "Content-Type": "application/json",
+            "Idempotency-Key": `enquiry/${requestId}/${digest}`,
+          },
+          body: JSON.stringify({
+            from: `Slidecraft Studio <${config.fromEmail}>`,
+            to: [config.toEmail],
+            reply_to: email,
+            subject: "New Slidecraft Studio enquiry",
+            text,
+          }),
+          signal: AbortSignal.timeout(8000),
+          cache: "no-store",
+        });
+        if (!result.ok) {
+          await releaseAllowance();
+          return reply(502, "Your enquiry could not be sent. Please try again later.");
+        }
+        const accepted = (await result.json()) as { id?: string; error?: unknown };
+        if (typeof accepted.id !== "string" || !accepted.id || accepted.error) {
+          await releaseAllowance();
+          return reply(502, "Your enquiry could not be sent. Please try again later.");
+        }
+        return reply(200, "Thank you. Your enquiry has been accepted for email delivery.");
+      } catch {
+        await releaseAllowance();
+        return reply(503, "Your enquiry could not be completed. Please try again later.");
+      }
     } catch {
       // Never log the brief, email address, provider payload, or API secrets.
       return reply(503, "Your enquiry could not be completed. Please try again later.");

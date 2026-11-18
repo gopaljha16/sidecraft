@@ -197,6 +197,10 @@ for (const [options, status] of [
     const response = await createContactHandler(config, mock.send)(request());
     assert.equal(response.status, status);
     assert.equal((await response.json()).ok, false);
+    assert.equal(mock.calls.length, 4);
+    const rollback = JSON.parse(String(mock.calls[3].init?.body));
+    assert.equal(rollback[0], "EVAL");
+    assert.match(rollback[1], /DECR/);
   });
 }
 

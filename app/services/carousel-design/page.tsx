@@ -12,7 +12,7 @@ import { Arrow } from "@/components/icons";
 export const metadata = pageMetadata(
   "/services/carousel-design",
   "LinkedIn & Instagram Carousel Design Services — Slidecraft Studio",
-  "A monthly carousel content system for founders and brands. Eight carousels with research, copy, design, captions, and two revision rounds, from ₹10,000/month.",
+  "A monthly carousel content system for founders and brands. Research, copy, design, captions, and two revision rounds, with custom pricing based on your scope.",
 );
 
 export default function CarouselDesignPage() {
@@ -32,13 +32,7 @@ export default function CarouselDesignPage() {
             offers: {
               "@type": "Offer",
               description:
-                "Monthly package starting from INR 10,000; final scope agreed before work begins.",
-              priceSpecification: {
-                "@type": "UnitPriceSpecification",
-                priceCurrency: "INR",
-                minPrice: 10000,
-                unitText: "month",
-              },
+                "Custom quote based on project scope, content needs, and timeline. Pricing agreed before work begins.",
             },
           }),
         }}
@@ -63,7 +57,7 @@ export default function CarouselDesignPage() {
           </Link>
         </div>
       </section>
-      <section className="border-y border-line bg-white/30 py-14">
+      <section className="border-y border-line bg-surface py-14">
         <div className="container grid gap-8 md:grid-cols-3">
           {[
             [

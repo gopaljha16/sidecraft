@@ -1,5 +1,7 @@
 export const offer = {
-  price: "₹10,000",
+  pricingLabel: "Custom quote",
+  pricingDescription:
+    "Pricing depends on your project scope, content needs, and timeline. We agree on a quote before work begins.",
   inclusions: [
     "8 carousels per month",
     "6–8 slides per carousel",
@@ -15,7 +17,7 @@ export const faqs = [
   {
     question: "What exactly is included?",
     answer:
-      "The monthly package starts at ₹10,000 for eight carousels of six to eight slides each, with research, content structure, hooks and slide copywriting, premium visual design, captions, and two revision rounds per carousel. The final brief and scope are agreed before work begins.",
+      "The monthly package includes eight carousels of six to eight slides each, with research, content structure, hooks and slide copywriting, premium visual design, captions, and two revision rounds per carousel. Pricing is quoted individually based on your scope, content needs, and timeline, and agreed before work begins.",
   },
   {
     question: "Can I provide my own brand kit or content?",
@@ -35,7 +37,7 @@ export const faqs = [
   {
     question: "Can I request one-off work?",
     answer:
-      "One-off projects can be discussed separately. The published monthly starting price applies to the monthly carousel package; one-off work and additional services receive a separate quote.",
+      "Yes. Both one-off projects and monthly packages receive a custom quote based on the agreed scope, content needs, and timeline. Share your brief so we can discuss the right approach.",
   },
   {
     question: "What is outside the monthly package?",

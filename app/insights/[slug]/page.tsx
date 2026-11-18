@@ -84,7 +84,7 @@ export default async function InsightPage({ params }: Props) {
                   </ul>
                 )}
                 {section.example && (
-                  <div className="mt-6 rounded-xl bg-[#eeeee7] p-6">
+                  <div className="mt-6 rounded-xl bg-surface p-6">
                     <p className="eyebrow mb-3 text-brand-strong">A WORKING EXAMPLE</p>
                     <p className="text-sm leading-relaxed">{section.example}</p>
                   </div>

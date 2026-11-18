@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useMotionDisclosure } from "./motion-disclosure";
 import { gentleSpring, useMotionPreference } from "./motion-provider";
 import { Arrow } from "./icons";
+import { ThemeToggle } from "./theme-toggle";
 import { Wordmark } from "./wordmark";
 
 const links = [
@@ -50,8 +51,9 @@ export function Navbar() {
               </Link>
             ))}
           </nav>
+          <ThemeToggle className="ml-auto md:ml-0" />
           <Link
-            className="button ml-auto min-h-10 gap-3 px-3 py-2 text-[11px] md:ml-0 md:min-h-11 md:gap-6 md:px-5 md:text-xs [&>svg]:size-4 md:[&>svg]:size-5"
+            className="button hidden min-h-10 gap-3 px-3 py-2 text-[11px] min-[440px]:inline-flex md:min-h-11 md:gap-6 md:px-5 md:text-xs [&>svg]:size-4 md:[&>svg]:size-5"
             href="/#contact"
             prefetch={false}
           >
